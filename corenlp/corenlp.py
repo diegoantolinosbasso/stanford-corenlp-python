@@ -284,7 +284,7 @@ def parse_xml_output(input_dir, corenlp_path=DIRECTORY, memory="3g", raw_output=
     # result = []
     try:
         for output_file in os.listdir(xml_dir):
-            with open(os.path.join(xml_dir + output_file), 'r') as xml:
+            with open(os.path.join(xml_dir, output_file), 'r') as xml:
                 # parsed = xml.read()
                 file_name = re.sub('.xml$', '', os.path.basename(output_file))
                 # result.append(parse_parser_xml_results(xml.read(), file_name,
