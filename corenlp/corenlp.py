@@ -314,22 +314,22 @@ class StanfordCoreNLP:
             self.corenlp = pexpect.spawn(self.start_corenlp, maxread=8192,
                 searchwindowsize=80)
 
-        # show progress bar while loading the models
-        if VERBOSE:
-            widgets = ['Loading Models: ', Fraction()]
-            pbar = ProgressBar(widgets=widgets, maxval=5, force_update=True).start()
-            # Model timeouts:
-            # pos tagger model (~5sec)
-            # NER-all classifier (~33sec)
-            # NER-muc classifier (~60sec)
-            # CoNLL classifier (~50sec)
-            # PCFG (~3sec)
-            timeouts = [20, 200, 600, 600, 20]
-            for i in xrange(5):
-                self.corenlp.expect("done.", timeout=timeouts[i])  # Load model
-                pbar.update(i + 1)
-            self.corenlp.expect("Entering interactive shell.")
-            pbar.finish()
+        # # show progress bar while loading the models
+        # if VERBOSE:
+        #     widgets = ['Loading Models: ', Fraction()]
+        #     pbar = ProgressBar(widgets=widgets, maxval=5, force_update=True).start()
+        #     # Model timeouts:
+        #     # pos tagger model (~5sec)
+        #     # NER-all classifier (~33sec)
+        #     # NER-muc classifier (~60sec)
+        #     # CoNLL classifier (~50sec)
+        #     # PCFG (~3sec)
+        #     timeouts = [20, 200, 600, 600, 20]
+        #     for i in xrange(5):
+        #         self.corenlp.expect("done.", timeout=timeouts[i])  # Load model
+        #         pbar.update(i + 1)
+        #     self.corenlp.expect("Entering interactive shell.")
+        #     pbar.finish()
 
         # interactive shell
         self.corenlp.expect("\nNLP> ")
